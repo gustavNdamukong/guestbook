@@ -20,8 +20,8 @@ final class Version20250722082702 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('CREATE TABLE sessions (sess_id VARCHAR(128) NOT NULL, sess_data BYTEA NOT NULL, sess_lifetime INT NOT NULL, sess_time INT NOT NULL, PRIMARY KEY(sess_id))');
-        $this->addSql('CREATE INDEX sess_lifetime_idx ON sessions (sess_lifetime)');
+        # $this->addSql('CREATE TABLE sessions (sess_id VARCHAR(128) NOT NULL, sess_data BYTEA NOT NULL, sess_lifetime INT NOT NULL, sess_time INT NOT NULL, PRIMARY KEY(sess_id))');
+        # $this->addSql('CREATE INDEX sess_lifetime_idx ON sessions (sess_lifetime)');
     }
 
     public function down(Schema $schema): void

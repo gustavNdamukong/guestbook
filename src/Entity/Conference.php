@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ConferenceRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Conference
 {
     #[ORM\Id]
@@ -29,6 +30,8 @@ class Conference
      */
     #[ORM\OneToMany(targetEntity: Comment::class, mappedBy: 'conference', orphanRemoval: true)]
     private Collection $comments;
+
+    private string $slug = '';
 
     public function __construct()
     {
@@ -107,6 +110,27 @@ class Conference
                 $comment->setConference(null);
             }
         }
+
+        return $this;
+    }
+
+    #[ORM\PrePersist]
+    #[ORM\PreUpdate]
+    public function setSlugValue(): void
+    {
+        if (!$this->slug || $this->slug === '') {
+            $this->slug = strtolower(trim(preg_replace('/[^a-z0-9]+/', '-', $this->city), '-'));
+        }
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }
