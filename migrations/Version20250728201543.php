@@ -20,7 +20,6 @@ final class Version20250728201543 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE conference ADD slug VARCHAR(255) NOT NULL');
         $this->addSql('CREATE UNIQUE INDEX UNIQ_911533C8989D9B62 ON conference (slug)');
     }
 
