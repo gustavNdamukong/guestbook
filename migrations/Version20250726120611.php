@@ -29,7 +29,11 @@ final class Version20250726120611 extends AbstractMigration
         # $this->addSql('ALTER TABLE comment DROP state');
         # $this->addSql('DROP INDEX uniq_911533c8989d9b62');
         # $this->addSql('ALTER TABLE conference DROP slug');
+        $this->addSql('ALTER TABLE conference ADD slug VARCHAR(255)');
+        $this->addSql("UPDATE conference SET slug=CONCAT(LOWER(city), '-', year)");
+        $this->addSql('ALTER TABLE conference ALTER COLUMN slug SET NOT NULL');
     }
+
 
     public function down(Schema $schema): void
     {

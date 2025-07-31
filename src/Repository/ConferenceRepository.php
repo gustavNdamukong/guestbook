@@ -16,6 +16,13 @@ class ConferenceRepository extends ServiceEntityRepository
         parent::__construct($registry, Conference::class);
     }
 
+    // This method overrides the findAll() offered by Doctrine. We do it to order
+    // the returned data.  
+    public function findAll(): array
+    {
+        return $this->findBy([], ['year' => 'ASC', 'city' => 'ASC']);
+    }
+
     //    /**
     //     * @return Conference[] Returns an array of Conference objects
     //     */
