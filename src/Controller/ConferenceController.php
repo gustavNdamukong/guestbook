@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Form\CommentType;
+use App\SpamChecker;
 
 
 final class ConferenceController extends AbstractController
@@ -34,6 +35,7 @@ final class ConferenceController extends AbstractController
         Request $request, 
         Conference $conference, 
         CommentRepository $commentRepository,
+        SpamChecker $spamChecker,
         #[Autowire('%photo_dir%')] string $photoDir,
         ): Response
      {
@@ -49,10 +51,21 @@ final class ConferenceController extends AbstractController
                 $comment->setPhotoFilename($filename);
             }
 
-                $this->entityManager->persist($comment);
-                $this->entityManager->flush();
+            $this->entityManager->persist($comment);
 
-                return $this->redirectToRoute('conference', ['slug' => $conference->getSlug()]);
+            $context = [
+                'user_ip' => $request->getClientIp(),
+                'user_agent' => $request->headers->get('user-agent'),
+                'referrer' => $request->headers->get('referer'),
+                'permalink' => $request->getUri(),
+            ];
+            if (2 === $spamChecker->getSpamScore($comment, $context)) {
+                throw new \RuntimeException('Blatant spam, go away!');
+            }
+
+            $this->entityManager->flush();
+
+            return $this->redirectToRoute('conference', ['slug' => $conference->getSlug()]);
         }
 
         $offset = max(0, $request->query->getInt('offset', 0));
