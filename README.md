@@ -25,15 +25,16 @@ start up the containers by running this command in your CLI:
 ```bash
 docker-compose up -d --remove-orphans
 ```
-If later you get an error or not being ablew to connect to the database (inside the 
-container image), be aware that database user access credentials are as follows if 
-you ever need to ssh into the container and test things-by the way, these creds are 
-defined, as you would imagine, in the .env file in the DATABASE_URL variable.
+If later you get an error or not being able to connect to the database (inside the 
+container image),and want to ssh into the container to test things, be aware that database 
+user access credentials are as below. 
+* These credentials are defined, as you would imagine, 
+in the .env file in the DATABASE_URL variable:
 
-DB name: 	     app
-User: 		     app
-PW:		  	     !ChangeMe!
-Port (external): 61984
+ * DB name: 	     app
+ * User: 		     app
+ * PW:		  	     !ChangeMe!
+ * Port (external): 61984
 
 If you still have issues, enure to check what port is being exposed by the container
 as it may change:
@@ -62,10 +63,10 @@ This also automatically makes avaialable, an admin section of the site at:
 
     http://127.0.0.1:8000/admin
 
-You have to be logged in to access this section, so you will be redirected to the login view
+* You have to be logged in to access this section, so you will be redirected to the login view
 if you are not yet authenticated. The auth credentials are:
-Username:   admin
-Password:   admin
+ * Username:   admin
+ * Password:   admin
 
 ## Compile assets and launch the SPA
 Next, build the assets and launh the SPA application by running this command:
