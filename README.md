@@ -27,8 +27,7 @@ docker-compose up -d --remove-orphans
 ```
 If later you get an error or not being able to connect to the database (inside the 
 container image),and want to ssh into the container to test things, be aware that database 
-user access credentials are as below. 
-* These credentials are defined, as you would imagine, 
+user access credentials are as below. These credentials are defined, as you would imagine, 
 in the .env file in the DATABASE_URL variable:
 
  * DB name: 	     app
@@ -63,7 +62,7 @@ This also automatically makes avaialable, an admin section of the site at:
 
     http://127.0.0.1:8000/admin
 
-* You have to be logged in to access this section, so you will be redirected to the login view
+You have to be logged in to access this section, so you will be redirected to the login view
 if you are not yet authenticated. The auth credentials are:
  * Username:   admin
  * Password:   admin
