@@ -3,3 +3,10 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+
+# SPA entry route (choose /spa or /app — here we chose to use /spa)
+spa:
+    path: /spa/
+    controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController
+    defaults:
+        template: 'spa.html.twig'

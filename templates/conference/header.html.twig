@@ -1,0 +1,9 @@
+<ul class="navbar-nav me-auto">
+    {% for conference in conferences %}
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('conference', { slug: conference.slug }) }}">
+                {{ conference }}
+            </a>
+        </li>
+    {% endfor %}
+</ul>

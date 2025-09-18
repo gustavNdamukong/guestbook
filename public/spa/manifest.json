@@ -1,0 +1,6 @@
+{
+  "spa/app.css": "/spa/app.css",
+  "spa/app.js": "/spa/app.js",
+  "spa/runtime.js": "/spa/runtime.js",
+  "spa/index.html": "/spa/index.html"
+}

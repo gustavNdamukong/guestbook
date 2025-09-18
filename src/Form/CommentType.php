@@ -23,16 +23,23 @@ class CommentType extends AbstractType
                 'label' => 'Your name',
             ])
 
-            ->add('text')
-            ->add('email', EmailType::class)
+            ->add('text', null, [
+                'label' => 'text',
+            ])
+            ->add('email', EmailType::class, [
+                'label' => 'Your email',
+            ])
             ->add('photo', FileType::class, [
+                'label' => 'Your photo',
                 'required' => false,
                 'mapped' => false,
                 'constraints' => [
                     new Image(maxSize: '1024k')
                 ],
              ])
-	        ->add('submit', SubmitType::class)
+	        ->add('submit', SubmitType::class, [
+                'label' => 'Submit',
+            ])
        ;
     }
 

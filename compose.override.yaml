@@ -3,7 +3,7 @@ services:
 ###> doctrine/doctrine-bundle ###
   database:
     ports:
-      - "5432"
+      - "61984:5432" # host_port:container_port (fixed mapping-to avoid updating port at every Docker restart)
 ###< doctrine/doctrine-bundle ###
 
 ###> symfony/mailer ###

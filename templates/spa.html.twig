@@ -1,0 +1,18 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Guestbook SPA</title>
+
+    {# This will generate <link> tags for the SPA CSS via the manifest in public/spa/ #}
+    {{ encore_entry_link_tags('app') }}
+  </head>
+  <body>
+      <div id="app"></div>
+      {# This will generate <script> tags for runtime/vendors/app using the manifest #}
+      {{ encore_entry_script_tags('app') }}
+  </body>
+</html>
+
